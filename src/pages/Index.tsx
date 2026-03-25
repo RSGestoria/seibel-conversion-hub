@@ -513,7 +513,7 @@ export default function Index() {
         href={WA_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white font-bold px-5 py-3 rounded-full shadow-lg flex items-center gap-2 transition-all hover:scale-105"
+        className="fixed bottom-6 right-6 z-50 bg-whatsapp hover:brightness-110 text-whatsapp-foreground font-bold px-5 py-3 rounded-full shadow-lg flex items-center gap-2 transition-all hover:scale-105"
       >
         <MessageCircle className="w-6 h-6" />
         <span className="hidden sm:inline">{t.floatingBtn}</span>
