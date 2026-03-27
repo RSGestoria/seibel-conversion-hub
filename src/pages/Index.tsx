@@ -249,9 +249,24 @@ export default function Index() {
   const [lang, setLang] = useState<Lang>("pt");
   const t = content[lang];
 
+  // --- CONTROLE DA ANIMAÇÃO AUTOMÁTICA (ADICIONE ISSO) ---
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    // Definimos os tempos de espera para cada passo (em milissegundos)
+    // 0 para 1: 2s | 1 para 2: 2s | 2 para 3: 3s | 3 para reiniciar: 5s
+    const stepDelays = [2000, 2000, 3000, 5000];
+
+    const timeout = setTimeout(() => {
+      setActiveStep((prev) => (prev < 3 ? prev + 1 : 0));
+    }, stepDelays[activeStep]);
+
+    return () => clearTimeout(timeout);
+  }, [activeStep]);
+  // -------------------------------------------------------
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <span className="font-heading font-bold text-lg text-foreground">
