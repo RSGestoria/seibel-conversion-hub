@@ -501,7 +501,7 @@ export default function Index() {
               <img
                 src={rodrigoPerfil}
                 alt="Rodrigo Seibel"
-                className="relative w-40 h-40 md:w-52 md:h-52 rounded-full border-2 border-primary/40 object-cover shadow-xl"
+                className="relative w-40 h-40 md:w-52 md:h-52 rounded-full border-2 border-primary/40 object-cover object-top shadow-xl"
                 loading="lazy"
               />
             </div>
