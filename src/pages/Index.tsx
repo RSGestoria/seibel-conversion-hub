@@ -18,7 +18,11 @@ import {
   ArrowRight,
   Instagram,
   ChevronDown,
+  Star,
+  Quote,
 } from "lucide-react";
+import rodrigoPerfil from "@/assets/rodrigo-perfil.jpeg";
+import rodrigoTrabalhando from "@/assets/rodrigo-trabalhando.png";
 
 const WA_LINK = "https://wa.link/9ho1h0";
 const IG_LINK = "https://www.instagram.com/rodrigoseibeldigital/";
@@ -60,6 +64,27 @@ const content = {
     diffTitle2: "Você instala um sistema que gera vendas todos os dias.",
     socialProof: "Mais de 5.000 leads gerados para empresas.",
     socialLabel: "leads gerados",
+    testimonialsTitle: "O que nossos clientes dizem",
+    testimonials: [
+      {
+        name: "Ana Ferreira",
+        role: "Dona de Clínica Estética",
+        result: "+320% de agendamentos em 60 dias",
+        text: "O Rodrigo estruturou todo meu funil e automação. Hoje recebo clientes no automático, sem precisar ficar no celular o dia todo.",
+      },
+      {
+        name: "Carlos Mendes",
+        role: "Dono de E-commerce",
+        result: "De 50 para 400 vendas/mês",
+        text: "Antes eu perdia clientes no direct. Agora com o CRM e automação, cada lead é acompanhado até fechar a venda.",
+      },
+      {
+        name: "Luciana Santos",
+        role: "Consultora de Negócios",
+        result: "+150 leads qualificados por semana",
+        text: "O sistema que o Rodrigo montou mudou meu negócio. Tráfego + automação = máquina de vendas.",
+      },
+    ],
     authorityName: "Rodrigo Seibel",
     authorityRole: "Especialista em tráfego, CRM e automação",
     authorityBio: [
@@ -114,6 +139,27 @@ const content = {
     diffTitle2: "Instalás un sistema que vende todos los días.",
     socialProof: "Más de 5.000 leads generados para empresas.",
     socialLabel: "leads generados",
+    testimonialsTitle: "Lo que dicen nuestros clientes",
+    testimonials: [
+      {
+        name: "Ana Ferreira",
+        role: "Dueña de Clínica Estética",
+        result: "+320% de citas en 60 días",
+        text: "Rodrigo estructuró todo mi embudo y automatización. Hoy recibo clientes en automático, sin estar pegada al celular todo el día.",
+      },
+      {
+        name: "Carlos Mendes",
+        role: "Dueño de E-commerce",
+        result: "De 50 a 400 ventas/mes",
+        text: "Antes perdía clientes en el direct. Ahora con CRM y automatización, cada lead es seguido hasta cerrar la venta.",
+      },
+      {
+        name: "Luciana Santos",
+        role: "Consultora de Negocios",
+        result: "+150 leads cualificados por semana",
+        text: "El sistema que Rodrigo montó cambió mi negocio. Tráfico + automatización = máquina de ventas.",
+      },
+    ],
     authorityName: "Rodrigo Seibel",
     authorityRole: "Especialista en tráfico, CRM y automatización",
     authorityBio: [
@@ -209,66 +255,84 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <span className="font-heading font-bold text-lg text-foreground">
-            Rodrigo <span className="text-primary">Seibel</span>
+            Rodrigo <span className="text-primary text-neon-sm">Seibel</span>
           </span>
           <button
             onClick={() => setLang(lang === "pt" ? "es" : "pt")}
-            className="px-3 py-1.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
+            className="px-3 py-1.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary hover-neon-border transition-colors"
           >
             {lang === "pt" ? "🇧🇷 PT-BR" : "🇵🇾 ES-PY"}
           </button>
         </div>
       </nav>
 
-      {/* BLOCO 1 — Hero */}
+      {/* BLOCO 1 — Hero com foto */}
       <section className="pt-28 pb-20 px-4 md:pt-40 md:pb-32 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
-          >
-            {t.heroTitle1}
-            <br />
-            <span className="text-gradient">{t.heroTitle2}</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto"
-          >
-            {t.heroSub}
-          </motion.p>
-          <motion.a
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.4 }}
-            className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-heading font-bold text-lg px-8 py-4 rounded-full hover:brightness-110 transition-all animate-pulse-glow"
-          >
-            <MessageCircle className="w-6 h-6" />
-            {t.heroCta}
-          </motion.a>
+        <div className="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-10">
+          <div className="flex-1 text-center md:text-left">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
+            >
+              {t.heroTitle1}
+              <br />
+              <span className="text-gradient text-neon">{t.heroTitle2}</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl"
+            >
+              {t.heroSub}
+            </motion.p>
+            <motion.a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7, duration: 0.4 }}
+              className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-heading font-bold text-lg px-8 py-4 rounded-full hover:brightness-110 transition-all animate-pulse-glow"
+            >
+              <MessageCircle className="w-6 h-6" />
+              {t.heroCta}
+            </motion.a>
+          </div>
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="mt-12"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="flex-shrink-0"
           >
-            <ChevronDown className="w-6 h-6 text-muted-foreground mx-auto animate-bounce" />
+            <div className="relative">
+              <div className="absolute -inset-2 bg-gradient-to-br from-primary/40 to-primary/10 rounded-2xl blur-xl" />
+              <img
+                src={rodrigoTrabalhando}
+                alt="Rodrigo Seibel trabalhando"
+                className="relative w-72 md:w-96 rounded-2xl border-2 border-primary/30 shadow-2xl object-cover"
+                loading="eager"
+              />
+            </div>
           </motion.div>
         </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="mt-12 text-center"
+        >
+          <ChevronDown className="w-6 h-6 text-muted-foreground mx-auto animate-bounce" />
+        </motion.div>
       </section>
 
       {/* BLOCO 2 — Promessa */}
       <AnimatedSection className="py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-heading text-2xl md:text-3xl font-semibold text-foreground">
+          <p className="font-heading text-2xl md:text-3xl font-semibold text-foreground text-neon-sm">
             {t.promise}
           </p>
         </div>
@@ -302,7 +366,7 @@ export default function Index() {
       {/* BLOCO 5 — Demonstração */}
       <AnimatedSection className="py-20 px-4">
         <div className="max-w-2xl mx-auto">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-10">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-10 text-neon">
             {t.demoTitle}
           </h2>
           <div className="relative">
@@ -317,7 +381,7 @@ export default function Index() {
                   transition={{ delay: i * 0.15, duration: 0.5 }}
                   className="relative flex items-center justify-center"
                 >
-                  <div className="relative z-10 bg-card border border-border px-6 py-4 rounded-xl text-center max-w-xs glow-primary">
+                  <div className="relative z-10 bg-card border border-border px-6 py-4 rounded-xl text-center max-w-xs hover-neon-border cursor-default">
                     <p className="font-heading font-semibold text-foreground">{step}</p>
                   </div>
                 </motion.div>
@@ -329,7 +393,7 @@ export default function Index() {
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full hover:brightness-110 transition-all hover-glow"
             >
               <MessageCircle className="w-5 h-5" />
               {t.heroCta}
@@ -352,7 +416,7 @@ export default function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
-                className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 hover:glow-primary transition-all group cursor-default"
+                className="bg-card border border-border rounded-xl p-6 hover-neon-border hover-glow cursor-default group"
               >
                 <div className="text-primary mb-4 group-hover:scale-110 transition-transform">
                   {serviceIcons[s.icon]}
@@ -371,45 +435,95 @@ export default function Index() {
           <p className="font-heading text-xl md:text-2xl text-muted-foreground mb-2">
             {t.diffTitle1}
           </p>
-          <p className="font-heading text-2xl md:text-4xl font-bold text-gradient">
+          <p className="font-heading text-2xl md:text-4xl font-bold text-gradient text-neon">
             {t.diffTitle2}
           </p>
         </div>
       </AnimatedSection>
 
-      {/* BLOCO 8 — Prova Social */}
+      {/* BLOCO 8 — Prova Social + Depoimentos */}
       <AnimatedSection className="py-20 px-4 bg-secondary/30">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="font-heading text-5xl md:text-7xl font-bold text-primary mb-3">
-            +<Counter target={5000} />
+        <div className="max-w-5xl mx-auto">
+          {/* Contador */}
+          <div className="text-center mb-16">
+            <div className="font-heading text-5xl md:text-7xl font-bold text-primary text-neon mb-3">
+              +<Counter target={5000} />
+            </div>
+            <p className="text-xl text-muted-foreground">{t.socialLabel}</p>
+            <p className="text-foreground mt-4 text-lg">{t.socialProof}</p>
           </div>
-          <p className="text-xl text-muted-foreground">{t.socialLabel}</p>
-          <p className="text-foreground mt-4 text-lg">{t.socialProof}</p>
+
+          {/* Depoimentos */}
+          <h3 className="font-heading text-2xl md:text-3xl font-bold text-center mb-10">
+            {t.testimonialsTitle}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {t.testimonials.map((test, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.5 }}
+                className="bg-card border border-border rounded-xl p-6 hover-neon-border hover-glow relative"
+              >
+                <Quote className="w-8 h-8 text-primary/30 absolute top-4 right-4" />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-heading font-bold text-lg">
+                    {test.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-foreground">{test.name}</p>
+                    <p className="text-muted-foreground text-sm">{test.role}</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-primary text-primary" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground text-sm mb-4 italic">"{test.text}"</p>
+                <div className="bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
+                  <p className="text-primary font-heading font-bold text-sm text-neon-sm">{test.result}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </AnimatedSection>
 
       {/* BLOCO 9 — Autoridade */}
       <AnimatedSection className="py-20 px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-24 h-24 rounded-full bg-primary/20 border-2 border-primary mx-auto mb-6 flex items-center justify-center text-primary font-heading text-3xl font-bold">
-            RS
+        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-10">
+          <div className="flex-shrink-0">
+            <div className="relative">
+              <div className="absolute -inset-2 bg-gradient-to-br from-primary/40 to-primary/10 rounded-full blur-lg" />
+              <img
+                src={rodrigoPerfil}
+                alt="Rodrigo Seibel"
+                className="relative w-40 h-40 md:w-52 md:h-52 rounded-full border-2 border-primary/40 object-cover shadow-xl"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <h2 className="font-heading text-3xl font-bold mb-2 text-foreground">{t.authorityName}</h2>
-          <p className="text-primary font-medium mb-6">{t.authorityRole}</p>
-          <ul className="space-y-2 text-muted-foreground">
-            {t.authorityBio.map((b, i) => (
-              <li key={i} className="text-lg">{b}</li>
-            ))}
-          </ul>
-          <a
-            href={IG_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-6 text-primary hover:underline font-medium"
-          >
-            <Instagram className="w-5 h-5" />
-            @rodrigoseibeldigital
-          </a>
+          <div className="text-center md:text-left">
+            <h2 className="font-heading text-3xl font-bold mb-2 text-foreground text-neon-sm">{t.authorityName}</h2>
+            <p className="text-primary font-medium mb-6">{t.authorityRole}</p>
+            <ul className="space-y-2 text-muted-foreground">
+              {t.authorityBio.map((b, i) => (
+                <li key={i} className="text-lg">{b}</li>
+              ))}
+            </ul>
+            <a
+              href={IG_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 text-primary hover:underline font-medium hover-glow px-3 py-1 rounded-full"
+            >
+              <Instagram className="w-5 h-5" />
+              @rodrigoseibeldigital
+            </a>
+          </div>
         </div>
       </AnimatedSection>
 
@@ -420,7 +534,7 @@ export default function Index() {
             {t.objections.map((obj, i) => (
               <div
                 key={i}
-                className="bg-card border border-border rounded-xl p-8 text-center"
+                className="bg-card border border-border rounded-xl p-8 text-center hover-neon-border hover-glow cursor-default"
               >
                 <div className="text-primary mb-4 flex justify-center">
                   {objectionIcons[obj.icon]}
@@ -437,9 +551,9 @@ export default function Index() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {t.benefits.map((b, i) => (
-              <div key={i} className="text-center">
-                <div className="text-primary mb-3 flex justify-center">{benefitIcons[i]}</div>
-                <p className="font-heading font-bold text-lg text-foreground">{b}</p>
+              <div key={i} className="text-center group cursor-default">
+                <div className="text-primary mb-3 flex justify-center group-hover:scale-110 transition-transform">{benefitIcons[i]}</div>
+                <p className="font-heading font-bold text-lg text-foreground group-hover:text-neon-sm">{b}</p>
               </div>
             ))}
           </div>
@@ -468,7 +582,7 @@ export default function Index() {
       {/* BLOCO 13 — Urgência */}
       <AnimatedSection className="py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-destructive/10 border border-destructive/30 rounded-full px-6 py-3">
+          <div className="inline-flex items-center gap-2 bg-destructive/10 border border-destructive/30 rounded-full px-6 py-3 hover-glow">
             <Clock className="w-5 h-5 text-destructive" />
             <p className="font-heading font-bold text-destructive">{t.urgency}</p>
           </div>
@@ -478,7 +592,7 @@ export default function Index() {
       {/* BLOCO 14 — CTA Final */}
       <section className="py-20 px-4 bg-gradient-to-t from-primary/10 to-transparent">
         <AnimatedSection className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-8 text-foreground">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-8 text-foreground text-neon">
             {t.finalCta}
           </h2>
           <a
