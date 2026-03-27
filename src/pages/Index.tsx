@@ -161,7 +161,7 @@ const content = {
       },
     ],
     authorityName: "Rodrigo Seibel",
-    authorityRole: "Especialista en tráfico, CRM y automatización",
+    authorityRole: "Especialista en tráfico, CRM e automatização",
     authorityBio: [
       "🚀 Estructuro el digital de empresas",
       "📈 Generación de clientes + organización comercial",
@@ -176,7 +176,7 @@ const content = {
     offerTitle: "Diagnóstico estratégico gratuito",
     offerDesc: "Descubrí exactamente qué está frenando tu negocio.",
     urgency: "Atiendo pocas empresas por semana.",
-    finalCta: "Quiero estructurar mi negocio ahora",
+    finalCta: "Quero estruturar meu negócio agora",
     floatingBtn: "Hablar con especialista",
     footer: "Todos los derechos reservados.",
   },
@@ -249,24 +249,20 @@ export default function Index() {
   const [lang, setLang] = useState<Lang>("pt");
   const t = content[lang];
 
-  // --- CONTROLE DA ANIMAÇÃO AUTOMÁTICA (ADICIONE ISSO) ---
+  // LOGICA DE ANIMAÇÃO AUTOMATICA DOS PASSOS
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
-    // Definimos os tempos de espera para cada passo (em milissegundos)
-    // 0 para 1: 2s | 1 para 2: 2s | 2 para 3: 3s | 3 para reiniciar: 5s
     const stepDelays = [2000, 2000, 3000, 5000];
-
     const timeout = setTimeout(() => {
       setActiveStep((prev) => (prev < 3 ? prev + 1 : 0));
     }, stepDelays[activeStep]);
-
     return () => clearTimeout(timeout);
   }, [activeStep]);
-  // -------------------------------------------------------
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <span className="font-heading font-bold text-lg text-foreground">
@@ -281,7 +277,7 @@ export default function Index() {
         </div>
       </nav>
 
-      {/* BLOCO 1 — Hero com foto */}
+      {/* BLOCO 1 — Hero */}
       <section className="pt-28 pb-20 px-4 md:pt-40 md:pb-32 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
         <div className="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-10">
@@ -378,25 +374,18 @@ export default function Index() {
         </div>
       </AnimatedSection>
 
-      {/* BLOCO 5 — Demonstração ao Vivo */}
+      {/* BLOCO 5 — Demonstração Dinâmica */}
       <AnimatedSection className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-2 text-neon">
             {lang === "pt" ? "Demonstração ao vivo" : "Demostración en vivo"}
           </h2>
           <p className="text-center text-muted-foreground text-lg mb-12">
-            {lang === "pt"
-              ? "Veja como funciona na prática"
-              : "Mirá cómo funciona en la práctica"}
-          </p>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            {lang === "pt"
-              ? "Um cliente comenta no seu post do Instagram e em segundos recebe uma mensagem automática personalizada."
-              : "Un cliente comenta en tu post de Instagram y en segundos recibe un mensaje automático personalizado."}
+            {lang === "pt" ? "Veja como funciona na prática" : "Mirá cómo funciona en la práctica"}
           </p>
 
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            {/* Steps */}
+            {/* Steps Animados */}
             <div className="flex-1 w-full">
               <div className="space-y-6">
                 {[
@@ -405,36 +394,31 @@ export default function Index() {
                   { icon: <Zap className="w-5 h-5" />, label: lang === "pt" ? "Mensagem automática enviada" : "Mensaje automático enviado", num: 3 },
                   { icon: <Target className="w-5 h-5" />, label: lang === "pt" ? "Venda realizada" : "Venta realizada", num: 4 },
                 ].map((step, i) => (
-                  <motion.div
+                  <div
                     key={i}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15, duration: 0.5 }}
-                    className="flex items-center gap-4 group"
+                    className={`flex items-center gap-4 transition-all duration-700 ${
+                      activeStep === i ? "opacity-100 scale-105" : "opacity-30 scale-100"
+                    }`}
                   >
-                    <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-heading font-bold text-sm shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <div className={`w-10 h-10 rounded-full border flex items-center justify-center font-heading font-bold text-sm shrink-0 transition-colors ${
+                      activeStep === i ? "bg-primary text-primary-foreground border-primary" : "bg-primary/20 border-primary/40 text-primary"
+                    }`}>
                       {step.num}
                     </div>
-                    <div className="flex items-center gap-3 bg-card border border-border px-5 py-3 rounded-xl flex-1 hover-neon-border cursor-default">
+                    <div className={`flex items-center gap-3 bg-card border px-5 py-3 rounded-xl flex-1 transition-all ${
+                      activeStep === i ? "border-primary shadow-lg" : "border-border"
+                    }`}>
                       <span className="text-primary">{step.icon}</span>
                       <p className="font-heading font-semibold text-foreground">{step.label}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
 
-            {/* WhatsApp Chat Mockup */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="flex-1 w-full max-w-sm"
-            >
+            {/* Mockup WhatsApp Sincronizado */}
+            <div className="flex-1 w-full max-w-sm">
               <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl glow-primary">
-                {/* Chat header */}
                 <div className="bg-whatsapp px-4 py-3 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30">
                     <img src={rodrigoPerfil} alt="Rodrigo Seibel" className="w-full h-full object-cover object-top" />
@@ -444,56 +428,50 @@ export default function Index() {
                     <p className="text-white/70 text-xs">online</p>
                   </div>
                 </div>
-                {/* Chat messages */}
-                <div className="p-4 space-y-3 min-h-[220px]" style={{ background: "hsl(var(--background))" }}>
-                  {/* Client message */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                    className="flex justify-start"
-                  >
-                    <div className="bg-secondary border border-border rounded-xl rounded-tl-sm px-4 py-2 max-w-[80%]">
-                      <p className="text-xs text-primary font-bold mb-1">@cliente_real</p>
-                      <p className="text-foreground text-sm">
-                        {lang === "pt" ? "Eu quero! Como funciona?" : "¡Yo quiero! ¿Cómo funciona?"}
-                      </p>
-                    </div>
-                  </motion.div>
-                  {/* Auto reply */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 1 }}
-                    className="flex justify-end"
-                  >
-                    <div className="bg-primary/20 border border-primary/30 rounded-xl rounded-tr-sm px-4 py-2 max-w-[80%]">
-                      <p className="text-foreground text-sm">
-                        {lang === "pt"
-                          ? "Olá! Vi que você se interessou. Posso te apresentar nossa solução em 2 minutos? Clique aqui 👇"
-                          : "¡Hola! Vi que te interesó. ¿Puedo presentarte nuestra solución en 2 minutos? Hacé clic aquí 👇"}
-                      </p>
-                      <p className="text-right text-xs text-muted-foreground mt-1">
-                        {lang === "pt" ? "agora" : "ahora"} ✓✓
-                      </p>
-                    </div>
-                  </motion.div>
+
+                <div className="p-4 space-y-3 min-h-[220px] bg-background">
+                  {/* Mensagem Cliente */}
+                  {activeStep >= 0 && (
+                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex justify-start">
+                      <div className="bg-secondary border border-border rounded-xl rounded-tl-sm px-4 py-2 max-w-[80%]">
+                        <p className="text-xs text-primary font-bold mb-1">@cliente_real</p>
+                        <p className="text-foreground text-sm">
+                          {lang === "pt" ? "Eu quero! Como funciona?" : "¡Yo quiero! ¿Cómo funciona?"}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Resposta IA */}
+                  {activeStep >= 2 && (
+                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex justify-end">
+                      <div className="bg-primary/20 border border-primary/30 rounded-xl rounded-tr-sm px-4 py-2 max-w-[80%]">
+                        <p className="text-foreground text-sm">
+                          {lang === "pt"
+                            ? "Olá! Vi que você se interessou. Posso te apresentar nossa solução em 2 minutos? Clique aqui 👇"
+                            : "¡Hola! Vi que te interesó. ¿Puedo presentarte nuestra solución en 2 minutos? Hacé clic aquí 👇"}
+                        </p>
+                        <p className="text-right text-xs text-muted-foreground mt-1">
+                          {lang === "pt" ? "agora" : "ahora"} ✓✓
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
-                {/* CTA inside chat */}
-                <div className="px-4 pb-4" style={{ background: "hsl(var(--background))" }}>
+
+                {/* Botão de Venda */}
+                <div className="px-4 pb-4">
                   <a
                     href={WA_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center bg-primary text-primary-foreground font-heading font-bold py-3 rounded-xl hover:brightness-110 transition-all animate-pulse-glow"
+                    className={`block w-full text-center bg-primary text-primary-foreground font-heading font-bold py-3 rounded-xl transition-all duration-500 ${
+                      activeStep === 3 ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95 pointer-events-none"
+                    }`}
                   >
                     {lang === "pt" ? "Quero isso no meu negócio" : "Quiero esto en mi negocio"}
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </AnimatedSection>
@@ -537,10 +515,9 @@ export default function Index() {
         </div>
       </AnimatedSection>
 
-      {/* BLOCO 8 — Prova Social + Depoimentos */}
+      {/* BLOCO 8 — Prova Social */}
       <AnimatedSection className="py-20 px-4 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
-          {/* Contador */}
           <div className="text-center mb-16">
             <div className="font-heading text-5xl md:text-7xl font-bold text-primary text-neon mb-3">
               +<Counter target={5000} />
@@ -549,7 +526,6 @@ export default function Index() {
             <p className="text-foreground mt-4 text-lg">{t.socialProof}</p>
           </div>
 
-          {/* Depoimentos */}
           <h3 className="font-heading text-2xl md:text-3xl font-bold text-center mb-10">
             {t.testimonialsTitle}
           </h3>
@@ -718,7 +694,7 @@ export default function Index() {
         </a>
       </footer>
 
-      {/* Botão Flutuante WhatsApp */}
+      {/* Botão Flutuante */}
       <a
         href={WA_LINK}
         target="_blank"
