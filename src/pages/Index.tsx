@@ -363,41 +363,122 @@ export default function Index() {
         </div>
       </AnimatedSection>
 
-      {/* BLOCO 5 — Demonstração */}
+      {/* BLOCO 5 — Demonstração ao Vivo */}
       <AnimatedSection className="py-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-10 text-neon">
-            {t.demoTitle}
+        <div className="max-w-5xl mx-auto">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-2 text-neon">
+            {lang === "pt" ? "Demonstração ao vivo" : "Demostración en vivo"}
           </h2>
-          <div className="relative">
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/10" />
-            <div className="space-y-8">
-              {t.demoSteps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15, duration: 0.5 }}
-                  className="relative flex items-center justify-center"
-                >
-                  <div className="relative z-10 bg-card border border-border px-6 py-4 rounded-xl text-center max-w-xs hover-neon-border cursor-default">
-                    <p className="font-heading font-semibold text-foreground">{step}</p>
-                  </div>
-                </motion.div>
-              ))}
+          <p className="text-center text-muted-foreground text-lg mb-12">
+            {lang === "pt"
+              ? "Veja como funciona na prática"
+              : "Mirá cómo funciona en la práctica"}
+          </p>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            {lang === "pt"
+              ? "Um cliente comenta no seu post do Instagram e em segundos recebe uma mensagem automática personalizada."
+              : "Un cliente comenta en tu post de Instagram y en segundos recibe un mensaje automático personalizado."}
+          </p>
+
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Steps */}
+            <div className="flex-1 w-full">
+              <div className="space-y-6">
+                {[
+                  { icon: <MessageCircle className="w-5 h-5" />, label: lang === "pt" ? "Cliente comenta no post" : "Cliente comenta en el post", num: 1 },
+                  { icon: <BrainCircuit className="w-5 h-5" />, label: lang === "pt" ? "IA detecta o interesse" : "IA detecta el interés", num: 2 },
+                  { icon: <Zap className="w-5 h-5" />, label: lang === "pt" ? "Mensagem automática enviada" : "Mensaje automático enviado", num: 3 },
+                  { icon: <Target className="w-5 h-5" />, label: lang === "pt" ? "Venda realizada" : "Venta realizada", num: 4 },
+                ].map((step, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.15, duration: 0.5 }}
+                    className="flex items-center gap-4 group"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-heading font-bold text-sm shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      {step.num}
+                    </div>
+                    <div className="flex items-center gap-3 bg-card border border-border px-5 py-3 rounded-xl flex-1 hover-neon-border cursor-default">
+                      <span className="text-primary">{step.icon}</span>
+                      <p className="font-heading font-semibold text-foreground">{step.label}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="text-center mt-10">
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full hover:brightness-110 transition-all hover-glow"
+
+            {/* WhatsApp Chat Mockup */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="flex-1 w-full max-w-sm"
             >
-              <MessageCircle className="w-5 h-5" />
-              {t.heroCta}
-            </a>
+              <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl glow-primary">
+                {/* Chat header */}
+                <div className="bg-whatsapp px-4 py-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30">
+                    <img src={rodrigoPerfil} alt="Rodrigo Seibel" className="w-full h-full object-cover object-top" />
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-white text-sm">Rodrigo Seibel</p>
+                    <p className="text-white/70 text-xs">online</p>
+                  </div>
+                </div>
+                {/* Chat messages */}
+                <div className="p-4 space-y-3 min-h-[220px]" style={{ background: "hsl(var(--background))" }}>
+                  {/* Client message */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-secondary border border-border rounded-xl rounded-tl-sm px-4 py-2 max-w-[80%]">
+                      <p className="text-xs text-primary font-bold mb-1">@cliente_real</p>
+                      <p className="text-foreground text-sm">
+                        {lang === "pt" ? "Eu quero! Como funciona?" : "¡Yo quiero! ¿Cómo funciona?"}
+                      </p>
+                    </div>
+                  </motion.div>
+                  {/* Auto reply */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1 }}
+                    className="flex justify-end"
+                  >
+                    <div className="bg-primary/20 border border-primary/30 rounded-xl rounded-tr-sm px-4 py-2 max-w-[80%]">
+                      <p className="text-foreground text-sm">
+                        {lang === "pt"
+                          ? "Olá! Vi que você se interessou. Posso te apresentar nossa solução em 2 minutos? Clique aqui 👇"
+                          : "¡Hola! Vi que te interesó. ¿Puedo presentarte nuestra solución en 2 minutos? Hacé clic aquí 👇"}
+                      </p>
+                      <p className="text-right text-xs text-muted-foreground mt-1">
+                        {lang === "pt" ? "agora" : "ahora"} ✓✓
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+                {/* CTA inside chat */}
+                <div className="px-4 pb-4" style={{ background: "hsl(var(--background))" }}>
+                  <a
+                    href={WA_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center bg-primary text-primary-foreground font-heading font-bold py-3 rounded-xl hover:brightness-110 transition-all animate-pulse-glow"
+                  >
+                    {lang === "pt" ? "Quero isso no meu negócio" : "Quiero esto en mi negocio"}
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </AnimatedSection>
@@ -501,7 +582,7 @@ export default function Index() {
               <img
                 src={rodrigoPerfil}
                 alt="Rodrigo Seibel"
-                className="relative w-40 h-40 md:w-52 md:h-52 rounded-full border-2 border-primary/40 object-cover shadow-xl"
+                className="relative w-40 h-40 md:w-52 md:h-52 rounded-full border-2 border-primary/40 object-cover object-top shadow-xl"
                 loading="lazy"
               />
             </div>
