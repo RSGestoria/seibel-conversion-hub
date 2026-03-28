@@ -670,17 +670,30 @@ export default function Index() {
       {/* BLOCO 10 — Quebra de Objeção */}
       <AnimatedSection className="py-20 px-4 bg-secondary/20">
         <div className="max-w-4xl mx-auto">
+          <h2 className="font-heading text-xl md:text-2xl font-bold text-center mb-10 text-muted-foreground">
+            {lang === "pt" ? "Por que escolher a gente?" : "¿Por qué elegirnos?"}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.objections.map((obj, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="bg-card border border-border rounded-xl p-8 text-center hover-neon-border hover-glow cursor-default"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.5 }}
+                whileHover={{ scale: 1.05, y: -8 }}
+                className="relative bg-card border border-border rounded-2xl p-8 text-center hover-neon-border cursor-default group overflow-hidden"
               >
-                <div className="text-primary mb-4 flex justify-center">
-                  {objectionIcons[obj.icon]}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.4)] transition-all duration-500">
+                    <div className="text-primary group-hover:scale-110 transition-transform duration-300">
+                      {objectionIcons[obj.icon]}
+                    </div>
+                  </div>
+                  <p className="font-heading font-semibold text-foreground text-lg">{obj.text}</p>
                 </div>
-                <p className="font-heading font-semibold text-foreground">{obj.text}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -689,12 +702,22 @@ export default function Index() {
       {/* BLOCO 11 — Benefícios */}
       <AnimatedSection className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {t.benefits.map((b, i) => (
-              <div key={i} className="text-center group cursor-default">
-                <div className="text-primary mb-3 flex justify-center group-hover:scale-110 transition-transform">{benefitIcons[i]}</div>
-                <p className="font-heading font-bold text-lg text-foreground group-hover:text-neon-sm">{b}</p>
-              </div>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                whileHover={{ scale: 1.1, y: -6 }}
+                className="text-center group cursor-default"
+              >
+                <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 group-hover:border-primary/40 group-hover:shadow-[0_0_25px_-5px_hsl(var(--primary)/0.5)] transition-all duration-500">
+                  <div className="text-primary group-hover:scale-110 transition-transform duration-300">{benefitIcons[i]}</div>
+                </div>
+                <p className="font-heading font-bold text-lg text-foreground">{b}</p>
+              </motion.div>
             ))}
           </div>
         </div>
