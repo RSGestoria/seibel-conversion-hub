@@ -275,9 +275,21 @@ export default function Index() {
 
   // LOGICA DE ANIMAÇÃO AUTOMATICA DOS PASSOS
   const [activeStep, setActiveStep] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    const stepDelays = [2000, 2000, 3000, 5000];
+    const stepDelays = [2000, 2000, 1500, 5000];
+
+    if (activeStep === 1) {
+      // Show typing indicator before auto-reply
+      setIsTyping(true);
+      const typingTimeout = setTimeout(() => {
+        setIsTyping(false);
+        setActiveStep(2);
+      }, stepDelays[1]);
+      return () => clearTimeout(typingTimeout);
+    }
+
     const timeout = setTimeout(() => {
       setActiveStep((prev) => (prev < 3 ? prev + 1 : 0));
     }, stepDelays[activeStep]);
