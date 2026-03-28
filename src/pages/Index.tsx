@@ -308,7 +308,7 @@ export default function Index() {
             onClick={() => setLang(lang === "pt" ? "es" : "pt")}
             className="px-3 py-1.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary hover-neon-border transition-colors"
           >
-            {lang === "pt" ? "🇧🇷 PT-BR" : "🇵🇾 ES-PY"}
+            {lang === "pt" ? "🇵🇾 ES-PY" : "🇧🇷 PT-BR"}
           </button>
         </div>
       </nav>
@@ -724,23 +724,47 @@ export default function Index() {
       </AnimatedSection>
 
       {/* BLOCO 12 — Oferta */}
-      <AnimatedSection className="py-20 px-4 bg-secondary/30">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            🎯 {t.offerTitle}
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">{t.offerDesc}</p>
-          <a
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-heading font-bold text-lg px-8 py-4 rounded-full hover:brightness-110 transition-all animate-pulse-glow"
-          >
-            <MessageCircle className="w-6 h-6" />
-            {t.heroCta}
-          </a>
-        </div>
-      </AnimatedSection>
+      <section className="py-24 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-primary/5 to-transparent" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        <AnimatedSection className="relative z-10">
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-card border border-primary/30 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden glow-primary-lg">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                className="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center mx-auto mb-6"
+              >
+                <Target className="w-10 h-10 text-primary" />
+              </motion.div>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3 text-foreground text-neon">
+                {t.offerTitle}
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto">{t.offerDesc}</p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <motion.a
+                  href={WA_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-heading font-bold text-lg px-10 py-5 rounded-full hover:brightness-110 transition-all animate-pulse-glow shadow-2xl"
+                >
+                  <MessageCircle className="w-6 h-6" />
+                  {t.heroCta}
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
+              </div>
+              <p className="text-sm text-muted-foreground mt-6">
+                {lang === "pt" ? "💬 100% gratuito • Sem compromisso" : "💬 100% gratuito • Sin compromiso"}
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+      </section>
 
       {/* BLOCO 13 — Urgência */}
       <AnimatedSection className="py-16 px-4">
