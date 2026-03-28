@@ -478,9 +478,41 @@ export default function Index() {
                     </motion.div>
                   )}
 
+                  {/* Typing Indicator */}
+                  <AnimatePresence>
+                    {isTyping && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        className="flex justify-end"
+                      >
+                        <div className="bg-primary/20 border border-primary/30 rounded-xl rounded-tr-sm px-4 py-3 max-w-[80%]">
+                          <div className="flex items-center gap-1.5">
+                            <motion.span
+                              animate={{ opacity: [0.3, 1, 0.3] }}
+                              transition={{ duration: 0.8, repeat: Infinity, delay: 0 }}
+                              className="w-2 h-2 rounded-full bg-primary"
+                            />
+                            <motion.span
+                              animate={{ opacity: [0.3, 1, 0.3] }}
+                              transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
+                              className="w-2 h-2 rounded-full bg-primary"
+                            />
+                            <motion.span
+                              animate={{ opacity: [0.3, 1, 0.3] }}
+                              transition={{ duration: 0.8, repeat: Infinity, delay: 0.4 }}
+                              className="w-2 h-2 rounded-full bg-primary"
+                            />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   {/* Resposta IA */}
                   {activeStep >= 2 && (
-                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex justify-end">
+                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }} className="flex justify-end">
                       <div className="bg-primary/20 border border-primary/30 rounded-xl rounded-tr-sm px-4 py-2 max-w-[80%]">
                         <p className="text-foreground text-sm">
                           {lang === "pt"
