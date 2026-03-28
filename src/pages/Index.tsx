@@ -697,6 +697,31 @@ export default function Index() {
         </div>
       </AnimatedSection>
 
+      {/* BLOCO — FAQ */}
+      <AnimatedSection className="py-20 px-4 bg-secondary/20">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-10 text-neon-sm">
+            {t.faqTitle}
+          </h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {t.faq.map((item, i) => (
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                className="bg-card border border-border rounded-xl px-6 hover-neon-border transition-all data-[state=open]:border-primary/50"
+              >
+                <AccordionTrigger className="font-heading font-semibold text-foreground hover:no-underline py-5 text-left">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </AnimatedSection>
+
       {/* BLOCO 14 — CTA Final */}
       <section className="py-20 px-4 bg-gradient-to-t from-primary/10 to-transparent">
         <AnimatedSection className="max-w-2xl mx-auto text-center">
