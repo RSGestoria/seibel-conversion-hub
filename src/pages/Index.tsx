@@ -191,9 +191,18 @@ const content = {
     offerTitle: "Diagnóstico estratégico gratuito",
     offerDesc: "Descubrí exactamente qué está frenando tu negocio.",
     urgency: "Atiendo pocas empresas por semana.",
-    finalCta: "Quero estruturar meu negócio agora",
+    finalCta: "Quiero estructurar mi negocio ahora",
     floatingBtn: "Hablar con especialista",
     footer: "Todos los derechos reservados.",
+    faqTitle: "Preguntas Frecuentes",
+    faq: [
+      { q: "¿Necesito saber de tecnología?", a: "¡No! Yo me encargo de toda la parte técnica. Vos solo enfocate en tu negocio." },
+      { q: "¿Cuánto tiempo lleva ver resultados?", a: "Los primeros resultados aparecen entre 7 y 30 días, dependiendo de tu nicho e inversión." },
+      { q: "¿Funciona para cualquier tipo de negocio?", a: "¡Sí! Ya atendí clínicas, e-commerces, consultores, restaurantes y muchos otros rubros." },
+      { q: "¿Cuál es la inversión necesaria?", a: "El diagnóstico estratégico es gratuito. Ahí presento un plan personalizado con valores a medida para tu negocio." },
+      { q: "¿Necesito tener Instagram o sitio web?", a: "No necesariamente. Yo estructuro todo desde cero, desde redes sociales hasta páginas de conversión." },
+      { q: "¿Y si ya tengo un gestor de tráfico?", a: "¡Sin problema! Puedo complementar con automatización, CRM y embudo — áreas que la mayoría de los gestores no cubren." },
+    ],
   },
 };
 
