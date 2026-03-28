@@ -110,6 +110,15 @@ const content = {
     finalCta: "Quero estruturar meu negócio agora",
     floatingBtn: "Falar com especialista",
     footer: "Todos os direitos reservados.",
+    faqTitle: "Perguntas Frequentes",
+    faq: [
+      { q: "Preciso entender de tecnologia?", a: "Não! Eu cuido de toda a parte técnica. Você só precisa focar no seu negócio." },
+      { q: "Quanto tempo leva para ver resultados?", a: "Os primeiros resultados aparecem entre 7 e 30 dias, dependendo do seu nicho e investimento." },
+      { q: "Funciona para qualquer tipo de negócio?", a: "Sim! Já atendi clínicas, e-commerces, consultores, restaurantes e muitos outros segmentos." },
+      { q: "Qual o investimento necessário?", a: "O diagnóstico estratégico é gratuito. Nele, apresento um plano personalizado com valores sob medida para seu negócio." },
+      { q: "Preciso ter Instagram ou site?", a: "Não necessariamente. Eu estruturo tudo do zero, desde redes sociais até páginas de conversão." },
+      { q: "E se eu já tiver um gestor de tráfego?", a: "Sem problema! Posso complementar com automação, CRM e funil — áreas que a maioria dos gestores não cobre." },
+    ],
   },
   es: {
     langLabel: "ES-PY",
