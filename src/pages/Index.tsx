@@ -1,5 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   MessageCircle,
   Rocket,
@@ -104,6 +110,15 @@ const content = {
     finalCta: "Quero estruturar meu negócio agora",
     floatingBtn: "Falar com especialista",
     footer: "Todos os direitos reservados.",
+    faqTitle: "Perguntas Frequentes",
+    faq: [
+      { q: "Preciso entender de tecnologia?", a: "Não! Eu cuido de toda a parte técnica. Você só precisa focar no seu negócio." },
+      { q: "Quanto tempo leva para ver resultados?", a: "Os primeiros resultados aparecem entre 7 e 30 dias, dependendo do seu nicho e investimento." },
+      { q: "Funciona para qualquer tipo de negócio?", a: "Sim! Já atendi clínicas, e-commerces, consultores, restaurantes e muitos outros segmentos." },
+      { q: "Qual o investimento necessário?", a: "O diagnóstico estratégico é gratuito. Nele, apresento um plano personalizado com valores sob medida para seu negócio." },
+      { q: "Preciso ter Instagram ou site?", a: "Não necessariamente. Eu estruturo tudo do zero, desde redes sociais até páginas de conversão." },
+      { q: "E se eu já tiver um gestor de tráfego?", a: "Sem problema! Posso complementar com automação, CRM e funil — áreas que a maioria dos gestores não cobre." },
+    ],
   },
   es: {
     langLabel: "ES-PY",
@@ -176,9 +191,18 @@ const content = {
     offerTitle: "Diagnóstico estratégico gratuito",
     offerDesc: "Descubrí exactamente qué está frenando tu negocio.",
     urgency: "Atiendo pocas empresas por semana.",
-    finalCta: "Quero estruturar meu negócio agora",
+    finalCta: "Quiero estructurar mi negocio ahora",
     floatingBtn: "Hablar con especialista",
     footer: "Todos los derechos reservados.",
+    faqTitle: "Preguntas Frecuentes",
+    faq: [
+      { q: "¿Necesito saber de tecnología?", a: "¡No! Yo me encargo de toda la parte técnica. Vos solo enfocate en tu negocio." },
+      { q: "¿Cuánto tiempo lleva ver resultados?", a: "Los primeros resultados aparecen entre 7 y 30 días, dependiendo de tu nicho e inversión." },
+      { q: "¿Funciona para cualquier tipo de negocio?", a: "¡Sí! Ya atendí clínicas, e-commerces, consultores, restaurantes y muchos otros rubros." },
+      { q: "¿Cuál es la inversión necesaria?", a: "El diagnóstico estratégico es gratuito. Ahí presento un plan personalizado con valores a medida para tu negocio." },
+      { q: "¿Necesito tener Instagram o sitio web?", a: "No necesariamente. Yo estructuro todo desde cero, desde redes sociales hasta páginas de conversión." },
+      { q: "¿Y si ya tengo un gestor de tráfico?", a: "¡Sin problema! Puedo complementar con automatización, CRM y embudo — áreas que la mayoría de los gestores no cubren." },
+    ],
   },
 };
 
@@ -251,9 +275,21 @@ export default function Index() {
 
   // LOGICA DE ANIMAÇÃO AUTOMATICA DOS PASSOS
   const [activeStep, setActiveStep] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    const stepDelays = [2000, 2000, 3000, 5000];
+    const stepDelays = [2000, 2000, 1500, 5000];
+
+    if (activeStep === 1) {
+      // Show typing indicator before auto-reply
+      setIsTyping(true);
+      const typingTimeout = setTimeout(() => {
+        setIsTyping(false);
+        setActiveStep(2);
+      }, stepDelays[1]);
+      return () => clearTimeout(typingTimeout);
+    }
+
     const timeout = setTimeout(() => {
       setActiveStep((prev) => (prev < 3 ? prev + 1 : 0));
     }, stepDelays[activeStep]);
@@ -442,9 +478,41 @@ export default function Index() {
                     </motion.div>
                   )}
 
+                  {/* Typing Indicator */}
+                  <AnimatePresence>
+                    {isTyping && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        className="flex justify-end"
+                      >
+                        <div className="bg-primary/20 border border-primary/30 rounded-xl rounded-tr-sm px-4 py-3 max-w-[80%]">
+                          <div className="flex items-center gap-1.5">
+                            <motion.span
+                              animate={{ opacity: [0.3, 1, 0.3] }}
+                              transition={{ duration: 0.8, repeat: Infinity, delay: 0 }}
+                              className="w-2 h-2 rounded-full bg-primary"
+                            />
+                            <motion.span
+                              animate={{ opacity: [0.3, 1, 0.3] }}
+                              transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
+                              className="w-2 h-2 rounded-full bg-primary"
+                            />
+                            <motion.span
+                              animate={{ opacity: [0.3, 1, 0.3] }}
+                              transition={{ duration: 0.8, repeat: Infinity, delay: 0.4 }}
+                              className="w-2 h-2 rounded-full bg-primary"
+                            />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   {/* Resposta IA */}
                   {activeStep >= 2 && (
-                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex justify-end">
+                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }} className="flex justify-end">
                       <div className="bg-primary/20 border border-primary/30 rounded-xl rounded-tr-sm px-4 py-2 max-w-[80%]">
                         <p className="text-foreground text-sm">
                           {lang === "pt"
@@ -658,6 +726,31 @@ export default function Index() {
             <Clock className="w-5 h-5 text-destructive" />
             <p className="font-heading font-bold text-destructive">{t.urgency}</p>
           </div>
+        </div>
+      </AnimatedSection>
+
+      {/* BLOCO — FAQ */}
+      <AnimatedSection className="py-20 px-4 bg-secondary/20">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-10 text-neon-sm">
+            {t.faqTitle}
+          </h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {t.faq.map((item, i) => (
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                className="bg-card border border-border rounded-xl px-6 hover-neon-border transition-all data-[state=open]:border-primary/50"
+              >
+                <AccordionTrigger className="font-heading font-semibold text-foreground hover:no-underline py-5 text-left">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </AnimatedSection>
 
