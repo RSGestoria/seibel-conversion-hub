@@ -308,7 +308,7 @@ export default function Index() {
             onClick={() => setLang(lang === "pt" ? "es" : "pt")}
             className="px-3 py-1.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary hover-neon-border transition-colors"
           >
-            {lang === "pt" ? "🇧🇷 PT-BR" : "🇵🇾 ES-PY"}
+            {lang === "pt" ? "🇵🇾 ES-PY" : "🇧🇷 PT-BR"}
           </button>
         </div>
       </nav>
