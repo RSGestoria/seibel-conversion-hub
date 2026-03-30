@@ -50,7 +50,7 @@ const content = {
       "Não tem controle do comercial",
     ],
     painConclusion: "👉 Seu negócio está travado.",
-    solution: "Eu estruturo todo o seu digital para gerar e organizar clientes automaticamente.",
+    solution: "Eu instalo um Sistema Automático de Geração de Clientes no seu negócio — tráfego pago, automação de mensagens, CRM e funil de vendas, tudo integrado.",
     demoTitle: "Imagine isso:",
     demoSteps: [
       'Cliente comenta: "eu quero"',
