@@ -189,10 +189,10 @@ const content = {
     ],
     benefits: ["Más clientes", "Menos esfuerzo", "Más control", "Crecimiento predecible"],
     offerTitle: "Diagnóstico estratégico gratuito",
-    offerDesc: "Descubrí exactamente qué está frenando tu negocio.",
+    offerDesc: "Descubrí exactamente qué está frenando tu negocio — y cómo el Sistema Automático lo resuelve.",
     urgency: "Atiendo pocas empresas por semana.",
-    finalCta: "Quiero estructurar mi negocio ahora",
-    floatingBtn: "Hablar con especialista",
+    finalCta: "Quiero mi diagnóstico gratuito",
+    floatingBtn: "Quiero automatizar mi negocio",
     footer: "Todos los derechos reservados.",
     faqTitle: "Preguntas Frecuentes",
     faq: [
