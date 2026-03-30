@@ -126,7 +126,7 @@ const content = {
     heroTitle2: "Y ni te das cuenta.",
     heroSub: "Instalá un Sistema Automático de Generación de Clientes — con tráfico, CRM y automatización integrados.",
     heroCta: "Quiero dejar de perder clientes",
-    promise: "Vendé todos los días con un sistema que trabaja por vos 24h.",
+    promise: "Vendé todos los días con un sistema que trabaja por vos 24h — tráfico, automatización y CRM en un solo lugar.",
     painTitle: "Si vos:",
     painItems: [
       "Tardás en responder",
