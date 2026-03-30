@@ -134,7 +134,7 @@ const content = {
       "No tenés control comercial",
     ],
     painConclusion: "👉 Tu negocio está frenado.",
-    solution: "Yo estructuro todo tu sistema digital para generar y organizar clientes automáticamente.",
+    solution: "Yo instalo un Sistema Automático de Generación de Clientes en tu negocio — tráfico pago, automatización de mensajes, CRM y embudo de ventas, todo integrado.",
     demoTitle: "Imaginá esto:",
     demoSteps: [
       'Cliente comenta: "yo quiero"',
