@@ -40,8 +40,8 @@ const content = {
     langLabel: "PT-BR",
     heroTitle1: "Você está perdendo clientes todos os dias…",
     heroTitle2: "E nem percebe.",
-    heroSub: "Transforme mensagens em vendas no automático com tráfego, CRM e automação.",
-    heroCta: "Falar no WhatsApp",
+    heroSub: "Instale um Sistema Automático de Geração de Clientes — com tráfego, CRM e automação integrados.",
+    heroCta: "Quero parar de perder clientes",
     promise: "Venda todos os dias com um sistema que trabalha por você 24h.",
     painTitle: "Se você:",
     painItems: [
